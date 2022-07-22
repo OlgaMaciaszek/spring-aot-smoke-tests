@@ -14,7 +14,7 @@ public class SimpleBeanDefinitionRegistrar implements ImportBeanDefinitionRegist
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry,
 			BeanNameGenerator importBeanNameGenerator) {
-		String[] types = new String[] { String.class.getName(), Integer.class.getName() };
+		String[] types = new String[] { Test.class.getName() };
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(SimpleBean.class);
 		builder.addConstructorArgValue("test");
 		builder.addConstructorArgValue(types);
