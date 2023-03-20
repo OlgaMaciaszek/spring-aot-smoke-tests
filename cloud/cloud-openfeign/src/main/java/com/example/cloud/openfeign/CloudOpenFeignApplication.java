@@ -20,11 +20,6 @@ public class CloudOpenFeignApplication implements CommandLineRunner {
 	@Autowired
 	private TestServiceClient testServiceClient;
 
-	@GetMapping("/")
-	String test() {
-		return testServiceClient.test();
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(CloudOpenFeignApplication.class, args);
 	}
