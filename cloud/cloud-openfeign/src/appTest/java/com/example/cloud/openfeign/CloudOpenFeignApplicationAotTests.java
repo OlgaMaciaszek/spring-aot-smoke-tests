@@ -18,6 +18,8 @@ class CloudOpenFeignApplicationAotTests {
 		Awaitility.await().atMost(Duration.ofSeconds(30)).untilAsserted(() -> {
 			assertThat(output).hasLineContaining("c.e.c.o.CloudOpenFeignApplication        : test");
 			assertThat(output).hasLineContaining("c.e.c.o.CloudOpenFeignApplication        : test type hints");
+			// verify custom config with Logger.Level.FULL loaded
+			assertThat(output).hasLineContaining("---> POST http://test-service/test HTTP/1.1");
 			assertThat(output).hasNoLinesContaining("ERROR");
 		});
 

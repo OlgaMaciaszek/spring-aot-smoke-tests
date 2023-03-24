@@ -1,5 +1,6 @@
 package com.example.cloud.openfeign;
 
+import com.example.cloud.openfeign.config.CustomFeignConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -40,7 +41,7 @@ public class CloudOpenFeignApplication implements CommandLineRunner {
 
 }
 
-@FeignClient("test-service")
+@FeignClient(value = "test-service", configuration = CustomFeignConfig.class)
 interface TestServiceClient {
 
 	@GetMapping("/")

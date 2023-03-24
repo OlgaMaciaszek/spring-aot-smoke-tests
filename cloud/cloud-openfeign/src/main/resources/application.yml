@@ -1,3 +1,6 @@
+logging:
+  level:
+    com.example.cloud.openfeign.TestServiceClient: DEBUG
 spring:
   application:
     name: cloud-openfeign
