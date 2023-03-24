@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @SpringBootApplication
 @EnableFeignClients(clients = TestServiceClient.class)
@@ -32,6 +34,7 @@ public class CloudOpenFeignApplication implements CommandLineRunner {
 	private void callTestService() {
 		if (LOG.isInfoEnabled()) {
 			LOG.info(testServiceClient.test());
+			LOG.info(testServiceClient.testTypesForReflection(new TestArgType("test type hints")).getTest());
 		}
 	}
 
@@ -42,5 +45,50 @@ interface TestServiceClient {
 
 	@GetMapping("/")
 	String test();
+
+	@PostMapping(value = "/test", produces = "application/json", consumes = "application/json")
+	TestReturnType testTypesForReflection(@RequestBody TestArgType testArg);
+
+}
+
+class TestReturnType {
+
+	private String test;
+
+	public TestReturnType(String test) {
+		this.test = test;
+	}
+
+	public TestReturnType() {
+	}
+
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+}
+
+class TestArgType {
+
+	private String test;
+
+	public TestArgType(String test) {
+		this.test = test;
+	}
+
+	public TestArgType() {
+	}
+
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
 
 }

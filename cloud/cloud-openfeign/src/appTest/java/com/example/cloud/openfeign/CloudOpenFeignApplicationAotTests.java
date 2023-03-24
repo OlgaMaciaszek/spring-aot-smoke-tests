@@ -17,6 +17,7 @@ class CloudOpenFeignApplicationAotTests {
 	void shouldCallTestService(AssertableOutput output) {
 		Awaitility.await().atMost(Duration.ofSeconds(30)).untilAsserted(() -> {
 			assertThat(output).hasLineContaining("c.e.c.o.CloudOpenFeignApplication        : test");
+			assertThat(output).hasLineContaining("c.e.c.o.CloudOpenFeignApplication        : test type hints");
 			assertThat(output).hasNoLinesContaining("ERROR");
 		});
 
